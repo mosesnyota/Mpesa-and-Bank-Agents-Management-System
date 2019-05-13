@@ -35,6 +35,28 @@ function getExpectedCash(){
 }
 
 
+function getMpesaBalance(){
+    include('dao/connect.php');
+    $statement = "SELECT SUM(`amount_paid`) AS TOTAL FROM `sales` WHERE `sales_date` = CURDATE() AND `mode_of_pay` = 'mpesa'";
+    $deposits = 0;
+    $result = $connection->query($statement);
+    while($row = $result->fetch_assoc()) {
+           $deposits = $row['TOTAL'];
+      }
+    return $deposits;
+}
+
+function getMpesaTillBalance(){
+    include('dao/connect.php');
+    $statement = "SELECT SUM(`amount_paid`) AS TOTAL FROM `sales` WHERE `sales_date` = CURDATE() AND `mode_of_pay` = 'till'";
+    $deposits = 0;
+    $result = $connection->query($statement);
+    while($row = $result->fetch_assoc()) {
+           $deposits = $row['TOTAL'];
+      }
+    return $deposits;
+}
+
 function getTotalWithdrawals(){
     include('dao/connect.php');
     $statement = "SELECT SUM(`trans_amount`) AS deposits FROM `transactions` WHERE `trans_type` ='W' and DATE_FORMAT(`trans_date`,'%Y-%m-%d') = CURDATE()";
@@ -114,8 +136,7 @@ function getTotalWithdrawals(){
               <div class="table-responsive">
                 <table class="table no-margin">
                   <thead>
-                  <tr>
-                    <th>Code</th>
+                  <tr> 
                     <th>Account</th>
                     <th>Type</th>
                     <th>Amount</th>
@@ -147,14 +168,12 @@ function getTotalWithdrawals(){
             
                       
                       
-                  <tr>
-                    <td><a href="alltransactions.php"><?php echo $trans_code;  ?></a></td>
+                <tr>
                     <td><?php echo $acct1.": ".$acct;  ?></td>
                     <td><span class="<?php echo $label;  ?>"><?php echo $type;  ?></span></td>
                     <td align='right'><?php echo number_format($amount,2);  ?></td>
-                    <td>
-                  
-                  </tr>
+                    
+                </tr>
                
                   <?php }  ?>        
                   
@@ -266,11 +285,13 @@ ORDER BY `float_amount` DESC";
                 <tfoot>
                     <tr>
                        
-                    <th>Expected Cash</th>
+                    <th>Cash + Mpesa Till </th>
                      <th><?php echo "Ksh. ".number_format(getExpectedCash(),2); ?></th>
                       <th></th>
                     
                     </tr>
+                   
+                    
                 <td></td>
                   <td></td>
                     <td></td>

@@ -62,10 +62,10 @@ VALUES ('$today','$total_amount','$amountpaid','$customer','$statuss','$paymetho
 if($result){
     
     include('dao/connect.php');
-    if($paymethod =='cash'){
+  
     $lpd ="UPDATE `cashsettings` SET `cash_amount` = `cash_amount` + $amountpaid";
     $result667 = $db->query($lpd);
-}
+
 //Get Sales id
 $resultDD = $db->query("SELECT max(sales_id) as id from sales");
 $saleid =0;

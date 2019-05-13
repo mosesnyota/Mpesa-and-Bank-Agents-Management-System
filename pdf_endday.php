@@ -221,18 +221,12 @@ while ($row = $result->fetch_assoc()) {
     $pdf->SetFillColor(224, 235, 255);
     $pdf->setFont("times", "", "11");
 
-    
-
-    $pdf->Cell(10, 7, $num, 1, 0, "L", 1);
+    $pdf->Cell(10, 7, $num, 1, 0, "L", $fill);
     $pdf->Cell(50, 7, str_replace("&", "'", $row['account_type']), 1, 0, "L", $fill);
     $pdf->Cell(60, 7, $row['account_name'], 1, 0, "L", $fill);
     $pdf->Cell(20, 7, $row['trans_type'], 1, 0, "C", $fill);
     $pdf->Cell(50, 7, number_format($row['total'],2), 1, 0, "R", $fill);
    
-    
-
-
-
     $y += 7;
     $fill = !$fill;
     if ($y > 275) {
@@ -258,30 +252,30 @@ while ($row = $result->fetch_assoc()) {
 $pdf->Cell(190, 7, "", 1, 0, "C", 1);
 
 $pdf->Ln();
-$pdf->Cell(190, 7, "Summary of Transactions", 1, 0, "C", 1);
+$pdf->Cell(190, 7, "Summary of Transactions", 1, 0, "C", 0);
 $pdf->Ln();
-$pdf->Cell(95, 7, "Total Withdrawals", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format($totalWithdrawal,2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Total Withdrawals", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format($totalWithdrawal,2), 1, 0, "L", 0);
 $pdf->Ln();
-$pdf->Cell(95, 7, "Total Deposits", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format($totalDeposits,2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Total Deposits", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format($totalDeposits,2), 1, 0, "L", 0);
 $pdf->Ln();
-$pdf->Cell(95, 7, "Cash Addition", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(cashAdditions(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Cash Addition", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(cashAdditions(),2), 1, 0, "L", 0);
 
 $pdf->Ln();
-$pdf->Cell(95, 7, "Float Addition", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(floatAdditions(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Float Addition", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(floatAdditions(),2), 1, 0, "L", 0);
 
 $pdf->Ln();
-$pdf->Cell(95, 7, "Paid Out", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(payouts(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Paid Out", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(payouts(),2), 1, 0, "L", 0);
 $pdf->Ln();
-$pdf->Cell(95, 7, "Total Sales", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(getAllSales(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Total Sales", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(getAllSales(),2), 1, 0, "L", 0);
 $pdf->Ln();
-$pdf->Cell(105, 7, "Cash Sales", 1, 0, "R", 1);
-$pdf->Cell(85, 7, "Ksh. ".number_format(getPaidSales(),2), 1, 0, "L", 1);
+$pdf->Cell(105, 7, "Cash Sales", 1, 0, "R", 0);
+$pdf->Cell(85, 7, "Ksh. ".number_format(getPaidSales(),2), 1, 0, "L", 0);
 
 $pdf->Ln();
 $pdf->Cell(105, 7, "Sales on Credit", 1, 0, "R", 1);
@@ -289,12 +283,12 @@ $pdf->Cell(85, 7, "Ksh. ".number_format(getCreditSales(),2), 1, 0, "L", 1);
 
 
 $pdf->Ln();
-$pdf->Cell(95, 7, "Payments for Previous Credit Sales", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(creditPayments(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Payments for Previous Credit Sales", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(creditPayments(),2), 1, 0, "L", 0);
 
 $pdf->Ln();
-$pdf->Cell(95, 7, "Expected Cash", 1, 0, "R", 1);
-$pdf->Cell(95, 7, "Ksh. ".number_format(getCashBalance(),2), 1, 0, "L", 1);
+$pdf->Cell(95, 7, "Expected Cash", 1, 0, "R", 0);
+$pdf->Cell(95, 7, "Ksh. ".number_format(getCashBalance(),2), 1, 0, "L", 0);
 
 $pdf->Output();
 ?>

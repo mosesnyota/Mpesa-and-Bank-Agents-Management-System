@@ -151,7 +151,7 @@ if(isset($_GET['from'])){
         }
         
 
- $statement = "SELECT `category`,purchase_price,`product_value`,`price`,sum(price - purchase_price ) as profit,pricetype, SUM(`items_sold`.`qnty`) AS totalunits , 
+ $statement = "SELECT `category`,purchase_price,`product_value`,`price`,SUM((price - purchase_price ) * `items_sold`.`qnty` ) AS profit,pricetype, SUM(`items_sold`.`qnty`) AS totalunits , 
 SUM(`price` *`items_sold`.`qnty`) AS totalamount , DATE_FORMAT(`sales_date`,\"%d-%m-%Y\") 
 AS salesdate FROM sales
 JOIN `items_sold` ON SALES.`sales_id` = items_sold.`sale_id`
@@ -159,7 +159,7 @@ JOIN `products` ON `items_sold`.`product_id` = `products`.`product_id`
 JOIN `product_category` ON `products`.`product_category` = `product_category`.`category_id` 
 WHERE  sales_date >= '$from' AND sales_date <= '$to'
 GROUP BY category, product_value
-ORDER BY `sales_date` DESC, category DESC, product_value DESC";   
+ORDER BY profit DESC";   
                         
 include('dao/connect.php');
 $result = $db->query($statement);

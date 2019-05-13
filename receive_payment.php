@@ -72,10 +72,10 @@ GROUP BY sales_id ";
                   <select class="form-control" id="paymethod" name="paymethod" required >
                       <option value="">-------Select Payment Method----------</option> 
                       <option value="cash">Cash</option> 
-                      <option value="till">Mpesa Till No</option> 
-                      <option value="mpesa">Mpesa sent to Number</option> 
-                      <option value="others">Others</option> 
-                      <option value="credit">To pay later</option> 
+                      <option value="credit">Credit</option> 
+                      <option value="till">Lipa Na Mpesa Till No</option> 
+                      <option value="mpesa">Mpesa Direct</option> 
+                      
                   </select>
                 </div>  
                   

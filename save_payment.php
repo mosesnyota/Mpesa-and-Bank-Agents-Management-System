@@ -39,19 +39,18 @@ id Array
 
 $qed = "UPDATE `sales`
 SET 
-  `amount_paid` = '$amountpaid',
+  `amount_paid` = amount_paid + $amountpaid,
   `statuss` = '$statuss',
   `mode_of_pay` = '$paymethod'
 WHERE `sales_id` = '$idd'";
+
  $result = $db->query($qed);
  
-
-
-
+ 
 if($result){
     
     include('dao/connect.php');
-    if($paymethod =='cash'){
+
     $lpd ="UPDATE `cashsettings` SET `cash_amount` = `cash_amount` + $amountpaid";
     $result667 = $db->query($lpd);
     
@@ -60,12 +59,12 @@ if($result){
             (`pay_date`,`amount`,`sale_id`)
 VALUES ('$today','$amountpaid','$idd')";
      $podd2 = $db->query($podd);
-}
 
 
-    echo "<script type= 'text/javascript'>alert('CHANGE:  Ksh. $change ');</script>";
-    echo "<script language=javascript>window.location='unpaid_sales.php';</script>";
+
+     echo "<script type= 'text/javascript'>alert('CHANGE:  Ksh. $change ');</script>";
+     echo "<script language=javascript>window.location='unpaid_sales.php';</script>";
 }else{
-  echo "<script type= 'text/javascript'>alert('Error Saving transaction');</script>";
-   echo "<script language=javascript>window.location='unpaid_sales.php';</script>";  
+     echo "<script type= 'text/javascript'>alert('Error Saving transaction');</script>";
+     echo "<script language=javascript>window.location='unpaid_sales.php';</script>";  
 }

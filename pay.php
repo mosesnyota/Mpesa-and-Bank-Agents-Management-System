@@ -2,6 +2,12 @@
 <html>
 <head>
     <?php include 'formheader.php'; ?>
+    
+    <script>
+function myFunction(val) {
+  document.getElementById("amountpaid").innerHTML = val;
+}
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -81,7 +87,7 @@
                   
                 <div class="form-group">
                   <label for="price">Select Price:</label>
-                  <select class="form-control" id="price" name="price" required >
+                  <select class="form-control" id="price" name="price" required  >
                       <option value="">-------Select Price------------</option> 
                       <option value="retail"><?php echo "Retail: ".$total_retail; ?></option> 
                       <option value="wholesale"><?php echo "Wholesale: ".$total_wholesale; ?></option> 
@@ -94,10 +100,10 @@
                   <select class="form-control" id="paymethod" name="paymethod" required >
                       <option value="">-------Select Payment Method----------</option> 
                       <option value="cash">Cash</option> 
-                      <option value="till">Mpesa Till No</option> 
-                      <option value="mpesa">Mpesa sent to Number</option> 
-                      <option value="others">Others</option> 
-                      <option value="credit">To pay later</option> 
+                      <option value="credit">Credit</option> 
+                      <option value="till">Lipa na Mpesa Till No</option> 
+                      <option value="mpesa">Mpesa Direct</option> 
+          
                   </select>
                 </div>  
                   
